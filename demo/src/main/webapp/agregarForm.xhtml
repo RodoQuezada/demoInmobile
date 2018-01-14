@@ -1,14 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./WEB-INF/resources/plantilla.xhtml">
 
             <ui:define name="content">
-                content
+                <h:form>
+                    <p:messages id="mensaje" autoUpdate="false"  severity="info, error" showSummary="true" showDetail="true"/>
+
+                    <p:panelGrid columns="3">
+                        <p:outputLabel for="txtRut" value="Rut" />
+                        <p:inputText  id="txtRut" value="#{indexController.persona.rut}" required="true" />
+                        <p:message for="txtRut" />
+
+                        <p:outputLabel for="txtnombre" value="nombre" />
+                        <p:inputText  id="txtnombre" value="#{indexController.persona.nombre}" required="true" />
+                        <p:message for="txtnombre" />
+
+                        <p:outputLabel for="txtapellido" value="apellido" />
+                        <p:inputText  id="txtapellido" value="#{indexController.persona.apellido}" required="true" />
+                        <p:message for="txtapellido" />
+
+
+
+                        <p:outputLabel for="txtTelefono" value="telefono" />
+                        <p:inputText  id="txtTelefono" value="#{indexController.persona.telefono}" required="true" />
+                        <p:message for="txtTelefono" />
+
+
+                        <p:outputLabel for="txtDireccion" value="direccion" />
+                        <p:inputText  id="txtDireccion" value="#{indexController.persona.direccion}" required="true" />
+                        <p:message for="txtDireccion" />
+
+                        <p:outputLabel for="cboEspecialidad" value="Especialidad: " />                           
+                        <p:selectOneMenu id="cboEspecialidad" value="#{indexController.persona.especialidad}"  >
+                            <f:selectItem itemValue="Electricista" itemLabel="Electricista" />
+                            <f:selectItem itemValue="Albañil" itemLabel="Albañil" />
+                            <f:selectItem itemValue="Soldador" itemLabel="Soldador" />
+                        </p:selectOneMenu>
+                        <p:message for="cboEspecialidad" />
+
+                        <p:outputLabel for="txtfoto" value="foto" />
+                        <p:inputText  id="txtfoto" value="#{indexController.persona.foto}" required="true" />
+                        <p:message for="txtfoto" />                                                
+
+                    </p:panelGrid>
+                    <p:commandButton value="agregar" action="#{indexController.crear()}" update="@form" />
+
+                </h:form>
             </ui:define>
 
         </ui:composition>
